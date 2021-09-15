@@ -10,7 +10,9 @@ const Table: React.FC<TableProps> = ({ clientes }) => {
     <>
       <table>
         <tr>
-          <th></th>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Idade</th>
         </tr>
       </table>
     </>

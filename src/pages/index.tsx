@@ -6,9 +6,10 @@ export default function Home() {
       className={`flex justify-center items-center h-screen
       bg-gradient-to-r from-blue-500 to-purple-500
       text-white
-    `}>
+    `}
+    >
       <Layout titulo="Cadastro Simples">
-        <span>Conteúdo</span>
+        <span>Te amo malu!</span>
       </Layout>
     </div>
   );
