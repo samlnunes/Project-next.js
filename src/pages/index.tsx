@@ -3,18 +3,25 @@ import Table from "../components/Table";
 import Cliente from "../core/Cliente";
 import Button from "../components/Button";
 import Form from "../components/Form";
-import { useState } from "react";
+import ClienteRepositorio from "../core/ClienteRepositorio";
+import CollectionCliente from "../data/db/CollectionCliente";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const repo: ClienteRepositorio = new CollectionCliente();
+
   const [cliente, setCliente] = useState<Cliente>(Cliente.empty());
+  const [clientes, setClientes] = useState<Cliente[]>([]);
   const [visible, setVisible] = useState<"table" | "form">("table");
 
-  const clientes = [
-    new Cliente("Ana", 31, "1"),
-    new Cliente("Bia", 45, "2"),
-    new Cliente("Malu", 18, "4"),
-    new Cliente("Samuel", 19, "5"),
-  ];
+  useEffect(getAll, []);
+
+  function getAll() {
+    repo.getAll().then(clientes => {
+      setClientes(clientes);
+      setVisible("table");
+    });
+  }
 
   function clienteSelecionado(cliente: Cliente) {
     setCliente(cliente);
@@ -23,8 +30,9 @@ export default function Home() {
 
   function clienteExcluido(cliente: Cliente) {}
 
-  function clienteSave(cliente: Cliente) {
-    setVisible("table");
+  async function clienteSave(cliente: Cliente) {
+    await repo.save(cliente);
+    getAll();
   }
 
   function clienteNew() {
@@ -37,8 +45,7 @@ export default function Home() {
       className={`flex justify-center items-center h-screen
       bg-gradient-to-r from-blue-500 to-purple-500
       text-white
-    `}
-    >
+    `}>
       <Layout titulo="Cadastro Simples">
         {visible === "table" ? (
           <>
