@@ -12,8 +12,8 @@ export default function Home() {
   const clientes = [
     new Cliente("Ana", 31, "1"),
     new Cliente("Bia", 45, "2"),
-    new Cliente("Carlos", 23, "3"),
-    new Cliente("Samuel", 19, "4"),
+    new Cliente("Malu", 18, "4"),
+    new Cliente("Samuel", 19, "5"),
   ];
 
   function clienteSelecionado(cliente: Cliente) {
