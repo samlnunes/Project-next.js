@@ -11,7 +11,7 @@ export default class CollectionCliente implements ClienteRepositorio {
       };
     },
     fromFirestore(
-      snapshot: firebase.firestore.QueryDocumentShapshot,
+      snapshot: firebase.firestore.QueryDocumentSnapshot,
       options: firebase.firestore.SnapshotOptions
     ): Cliente {
       const dados = snapshot.data(options);
@@ -21,25 +21,25 @@ export default class CollectionCliente implements ClienteRepositorio {
 
   async save(cliente: Cliente): Promise<Cliente> {
     if (cliente?.id) {
-      await this.#collection().doc(cliente.id).set(cliente);
+      await this.collection().doc(cliente.id).set(cliente);
       return cliente;
     } else {
-      const docRef = await this.#collection().add(cliente);
+      const docRef = await this.collection().add(cliente);
       const doc = await docRef.get();
       return doc.data();
     }
   }
 
-  async delete(cliente: Cliente): Promise<Cliente> {
-    return this.#collection().doc(cliente.id).delete();
+  async excluir(cliente: Cliente): Promise<void> {
+    return this.collection().doc(cliente.id).delete();
   }
 
   async getAll(): Promise<Cliente[]> {
-    const query = await this.#collection().get();
-    return query.docs.map(doc => doc.data()) ?? [];
+    const query = await this.collection().get();
+    return query.docs.map((doc) => doc.data()) ?? [];
   }
 
-  #collection() {
+  private collection() {
     return firebase
       .firestore()
       .collection("clientes")

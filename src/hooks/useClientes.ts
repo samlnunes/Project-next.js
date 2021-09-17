@@ -27,7 +27,7 @@ export default function useClientes() {
   }
 
   async function deleteCliente(cliente: Cliente) {
-    await repo.delete(cliente);
+    await repo.excluir(cliente);
     getAll();
   }
 
