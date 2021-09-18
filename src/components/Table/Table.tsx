@@ -1,6 +1,6 @@
 import React from "react";
-import Cliente from "../core/Cliente";
-import { IconEdition, IconTrash } from "./Icons";
+import Cliente from "../../core/Cliente";
+import { IconEdition, IconTrash } from "../Icons/Icons";
 
 interface TableProps {
   clientes: Cliente[];
@@ -31,7 +31,8 @@ const Table: React.FC<TableProps> = ({
       return (
         <tr
           key={cliente.id}
-          className={`${i % 2 === 0 ? `bg-purple-200` : `bg-purple-100`}`}>
+          className={`${i % 2 === 0 ? `bg-purple-200` : `bg-purple-100`}`}
+        >
           <td className="text-left p-4">{cliente.id}</td>
           <td className="text-left p-4">{cliente.name}</td>
           <td className="text-left p-4">{cliente.age}</td>
@@ -47,7 +48,8 @@ const Table: React.FC<TableProps> = ({
         {clienteSelecionado ? (
           <button
             onClick={() => clienteSelecionado?.(cliente)}
-            className={`flex justify-center items-center text-green-600 rounded-full p-2 m-1 hover:bg-purple-50`}>
+            className={`flex justify-center items-center text-green-600 rounded-full p-2 m-1 hover:bg-purple-50`}
+          >
             {IconEdition}
           </button>
         ) : (
@@ -57,7 +59,8 @@ const Table: React.FC<TableProps> = ({
         {clienteExcluido ? (
           <button
             onClick={() => clienteExcluido?.(cliente)}
-            className={`flex justify-center items-center text-red-500 rounded-full p-2 m-1 hover:bg-purple-50`}>
+            className={`flex justify-center items-center text-red-500 rounded-full p-2 m-1 hover:bg-purple-50`}
+          >
             {IconTrash}
           </button>
         ) : (
@@ -70,7 +73,8 @@ const Table: React.FC<TableProps> = ({
   return (
     <table className="w-full rounded-xl overflow-hidden">
       <thead
-        className={`text-gray-100 bg-gradient-to-r from-purple-500 to-purple-800`}>
+        className={`text-gray-100 bg-gradient-to-r from-purple-500 to-purple-800`}
+      >
         {renderHeader()}
       </thead>
       <tbody>{renderData()}</tbody>

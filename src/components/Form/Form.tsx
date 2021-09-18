@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import Cliente from "../core/Cliente";
-import Input from "./Input";
+import { Button, Input } from "../index";
+import Cliente from "../../core/Cliente";
 
 interface FormProps {
   cliente: Cliente;

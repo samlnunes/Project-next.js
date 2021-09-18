@@ -1,7 +1,4 @@
-import Layout from "../components/Layout";
-import Table from "../components/Table";
-import Button from "../components/Button";
-import Form from "../components/Form";
+import { Button, Form, Layout, Table } from "../components";
 import useClientes from "../hooks/useClientes";
 
 export default function Home() {
@@ -23,7 +20,7 @@ export default function Home() {
       text-white
     `}
     >
-      <Layout titulo="Cadastro Simples">
+      <Layout title="Cadastro Simples">
         {tableVisible ? (
           <>
             <div className="flex justify-end">
